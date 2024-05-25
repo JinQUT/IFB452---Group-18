@@ -8,9 +8,12 @@ contract DistributeCredentials {
     // struct to define the structure of the distribute credentials contract
     struct CredentialsData {
         address issuer;
+        uint256 studentId;
         string studentName;
-        string degree; 
-        string degreeCompletionDate;
+        string institution;
+        string qualification; 
+        string dateIssued;
+        bytes32 signature
     }
     
     // mapping to store credential contract information
@@ -20,7 +23,7 @@ contract DistributeCredentials {
     uint256 public credentialsCount;
 
     // event triggered when a new credential is distributed
-    event CredentialsIssued(uint256 credentialID, address issuer, string studentName, string degree, string completionDate);
+    event CredentialsIssued(uint256 credentialID, address issuer, uint256 studentId, string studentName, string institution, string qualification, string dateIssued);
 
     // contract constructor dont need one?
     constructor() {
@@ -34,11 +37,11 @@ contract DistributeCredentials {
     }
 
     // issue credential function
-    function issueCredential(string memory studentName, string memory degree, string memory degreeCompletionDate) public onlyIssuer {
+    function issueCredential(uint256 memory studentId, string memory studentName, string memory institution, string memory qualification, string memory dateIssued) public onlyIssuer {
         credentialsCount++;   
         // store credential
-        credentials[credentialsCount] = CredentialsData(issuer, studentName, degree, degreeCompletionDate);
-        emit CredentialsIssued(credentialsCount, issuer, studentName, degree, degreeCompletionDate);
+        credentials[credentialsCount] = CredentialsData(issuer, studentId, studentName, institution, qualification, dateIssued);
+        emit CredentialsIssued(credentialsCount, issuer, studentId, studentName, institution, qualification, dateIssued);
     }
 
 }
