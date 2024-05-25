@@ -1,0 +1,228 @@
+{
+	"compiler": {
+		"version": "0.8.22+commit.4fc1097e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "studentId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "employer",
+						"type": "address"
+					}
+				],
+				"name": "PermissionGranted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "studentId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "employer",
+						"type": "address"
+					}
+				],
+				"name": "PermissionRequested",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "employer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "isVerified",
+						"type": "bool"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "message",
+						"type": "string"
+					}
+				],
+				"name": "VerificationResult",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "employer",
+						"type": "address"
+					}
+				],
+				"name": "addEmployer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "studentId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "employer",
+						"type": "address"
+					}
+				],
+				"name": "grantPermission",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "isEmployer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "studentId",
+						"type": "uint256"
+					}
+				],
+				"name": "readCredential",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "studentId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "studentName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "institution",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "qualification",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "dateOfIssuance",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "additionalData",
+						"type": "string"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "signature",
+						"type": "bytes32"
+					}
+				],
+				"name": "registerCredential",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "studentId",
+						"type": "uint256"
+					}
+				],
+				"name": "requestPermission",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/CredentialVerification.sol": "AcademicVerification"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/CredentialVerification.sol": {
+			"keccak256": "0xd6f038e963d29ec9035ac6c8dd3cf6227e12a4028a0ab00585a10c37745443cc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b5b8195a3e5082934dcdfd545aca881c81c09278f2e8b075212422a545df2058",
+				"dweb:/ipfs/QmSN7g8daPc1wPGTATKKVvWJ2ep7bfz6nVmCp6nUmwg62Y"
+			]
+		}
+	},
+	"version": 1
+}
