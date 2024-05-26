@@ -20,6 +20,8 @@ contract CredentialVerification {
     // A mapping to track which addresses are authorized as employers
     mapping(address => bool) public isEmployer;
 
+    mapping(uint256 => address) public studentAddresses; // Mapping from studentId to Ethereum address
+
     // A nested mapping to manage permissions, where each student ID maps to another mapping
     // that tracks which employer addresses have been granted permission to view their credentials
     mapping(uint256 => mapping(address => bool)) public permissions;
@@ -38,22 +40,30 @@ contract CredentialVerification {
 
     // Public function to add an employer's address to the mapping of authorized employers
     function addEmployer(address employer) public {
+        require(!isEmployer[employer], "Employer already authorized.");
         isEmployer[employer] = true;
     }
 
+
     // Function for employers to request permission to access a student's credentials
     function requestPermission(uint256 studentId) public onlyEmployer {
+        require(credentials[studentId].studentId != 0, "Student ID is not registered.");
+        require(studentAddresses[studentId] != address(0), "No Ethereum address registered for this student.");
         emit PermissionRequested(studentId, msg.sender);
     }
 
     // Function for granting an employer permission to access a student's credentials
     function grantPermission(uint256 studentId, address employer) public {
+        require(msg.sender == studentAddresses[studentId], "Only the student can grant permission");
+        require(isEmployer[employer], "Employer is not authorized");
         permissions[studentId][employer] = true;
         emit PermissionGranted(studentId, employer);
     }
 
     // Function to deny or revoke an employer's permission to access a student's credentials
     function denyPermission(uint256 studentId, address employer) public {
+        require(msg.sender == studentAddresses[studentId], "Only the student can deny permission");
+        require(isEmployer[employer], "Employer is not authorized");
         permissions[studentId][employer] = false;
         emit PermissionDenied(studentId, employer);
     }
@@ -73,9 +83,14 @@ contract CredentialVerification {
     }
 
     // Function to register or record new credentials for a student
-    function registerCredential(uint256 studentId, string memory studentName, string memory institution, string memory qualification, string memory dateIssued, string memory additionalData, bytes32 signature) public {
-        credentials[studentId] = Credential(studentId, studentName, institution, qualification, dateIssued, additionalData, signature);
-    }
+    function registerCredential(uint256 studentId, string memory studentName, string memory institution, string memory qualification, string memory dateIssued, string memory additionalData, bytes32 signature, address studentAddress) public {
+    // Ensure that the student ID and address are not already registered to prevent overwriting
+    require(credentials[studentId].studentId == 0, "Credentials already registered for this student ID.");
+    require(studentAddresses[studentId] == address(0), "Address already registered for this student ID.");
+
+    credentials[studentId] = Credential(studentId, studentName, institution, qualification, dateIssued, additionalData, signature);
+    studentAddresses[studentId] = studentAddress;
+}
 
     // Private function to generate a formatted string message displaying a credential's details
     function generateVerificationMessage(Credential memory credential) private pure returns (string memory) {
