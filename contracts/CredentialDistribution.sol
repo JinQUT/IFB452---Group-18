@@ -37,10 +37,10 @@ contract DistributeCredentials {
     }
 
     // issue credential function
-    function issueCredential(uint256 memory studentId, string memory studentName, string memory institution, string memory qualification, string memory dateIssued) public onlyIssuer {
+    function issueCredential(uint256 studentId, string memory studentName, string memory institution, string memory qualification, string memory dateIssued, bytes32 signature) public onlyIssuer {
         credentialsCount++;   
         // store credential
-        credentials[credentialsCount] = CredentialsData(issuer, studentId, studentName, institution, qualification, dateIssued);
+        credentials[credentialsCount] = CredentialsData(issuer, studentId, studentName, institution, qualification, dateIssued, signature);
         emit CredentialsIssued(credentialsCount, issuer, studentId, studentName, institution, qualification, dateIssued);
     }
 
