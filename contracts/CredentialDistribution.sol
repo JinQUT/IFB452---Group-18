@@ -1,47 +1,63 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
 contract DistributeCredentials {
-    // contract owner address, universities/educational institutions
+    // Address of the issuer (university or educational institution)
     address public issuer;
 
-    // struct to define the structure of the distribute credentials contract
+    // Structure defining the credentials
     struct CredentialsData {
-        address issuer;
-        uint256 studentId;
-        string studentName;
-        string institution;
-        string qualification; 
-        string dateIssued;
-        bytes32 signature
+        address issuer;           // Ethereum address of the issuing institution
+        address studentAddress;   // Ethereum address of the student set manually
+        string studentName;       // Name of the student
+        string institution;       // Name of the educational institution
+        string qualification;     // Details of the qualification awarded
+        string dateIssued;        // Date when the credential was issued
+        bytes32 signature;        // Cryptographic signature validating the credential
     }
-    
-    // mapping to store credential contract information
+
+    // Mapping of student ID to their credentials
     mapping (uint256 => CredentialsData) public credentials;
 
-    // Counter to keep track of the total number of credentials issued
-    uint256 public credentialsCount;
+    // Event triggered when new credentials are issued
+    event CredentialsIssued(uint256 studentId, address studentAddress, string studentName, string institution, string qualification, string dateIssued);
 
-    // event triggered when a new credential is distributed
-    event CredentialsIssued(uint256 credentialID, address issuer, uint256 studentId, string studentName, string institution, string qualification, string dateIssued);
-
-    // contract constructor dont need one?
+    // Constructor to set the issuer as the contract deployer
     constructor() {
         issuer = msg.sender;
     }
 
-    // restrict acess to only the university
-    modifier onlyIssuer(){
-        require(msg.sender == issuer, "Only the university issuer can execute this");
+    // Modifier to restrict function access to the issuer only
+    modifier onlyIssuer() {
+        require(msg.sender == issuer, "Only the registered institution issuer can execute this");
         _;
     }
 
-    // issue credential function
-    function issueCredential(uint256 studentId, string memory studentName, string memory institution, string memory qualification, string memory dateIssued, bytes32 signature) public onlyIssuer {
-        credentialsCount++;   
-        // store credential
-        credentials[credentialsCount] = CredentialsData(issuer, studentId, studentName, institution, qualification, dateIssued, signature);
-        emit CredentialsIssued(credentialsCount, issuer, studentId, studentName, institution, qualification, dateIssued);
+    // Function to issue credentials
+    function issueCredential(uint256 studentId, address studentAddress, string memory studentName, string memory institution, string memory qualification, string memory dateIssued, bytes32 signature) public onlyIssuer {
+        require(studentAddress != address(0), "Invalid student address");
+        require(studentAddress != issuer, "Issuer address cannot be used for a student");
+        credentials[studentId] = CredentialsData(issuer, studentAddress, studentName, institution, qualification, dateIssued, signature);
+        emit CredentialsIssued(studentId, studentAddress, studentName, institution, qualification, dateIssued);
     }
 
+    // Function to retrieve complete credential data for a given studentId
+    function getCredentials(uint256 studentId) public view returns (
+        address studentAddress, 
+        string memory studentName, 
+        string memory institution, 
+        string memory qualification, 
+        string memory dateIssued, 
+        bytes32 signature
+    ) {
+        CredentialsData storage data = credentials[studentId];
+        return (
+            data.studentAddress,
+            data.studentName,
+            data.institution,
+            data.qualification,
+            data.dateIssued,
+            data.signature
+        );
+    }
 }
