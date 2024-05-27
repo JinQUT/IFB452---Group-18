@@ -56,531 +56,523 @@
   </style>
   <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js" type="application/javascript"></script>
   <script>
-    const distributeCredentialsAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
-    const credentialVerificationAddress = "0xd8b934580fcE35a11B58C6D73aDeE468a2833fa8";
+    const distributeCredentialsAddress = "0x48e24370326d1695566b56b49cBB60806a243A48";
+    const credentialVerificationAddress = "0xcAfF25FD2D2B5824930bA1d885901f1a58cC2A24";
 
     const distributeCredentialsABI = [
-      {
-        "inputs": [],
-        "stateMutability": "nonpayable",
-        "type": "constructor"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "studentId",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "internalType": "address",
-            "name": "studentAddress",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "internalType": "string",
-            "name": "studentName",
-            "type": "string"
-          },
-          {
-            "indexed": false,
-            "internalType": "string",
-            "name": "institution",
-            "type": "string"
-          },
-          {
-            "indexed": false,
-            "internalType": "string",
-            "name": "qualification",
-            "type": "string"
-          },
-          {
-            "indexed": false,
-            "internalType": "string",
-            "name": "dateIssued",
-            "type": "string"
-          }
-        ],
-        "name": "CredentialsIssued",
-        "type": "event"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "studentId",
-            "type": "uint256"
-          },
-          {
-            "internalType": "address",
-            "name": "studentAddress",
-            "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "studentName",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "institution",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "qualification",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "dateIssued",
-            "type": "string"
-          },
-          {
-            "internalType": "bytes32",
-            "name": "signature",
-            "type": "bytes32"
-          }
-        ],
-        "name": "issueCredential",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "name": "credentials",
-        "outputs": [
-          {
-            "internalType": "address",
-            "name": "issuer",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "studentAddress",
-            "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "studentName",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "institution",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "qualification",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "dateIssued",
-            "type": "string"
-          },
-          {
-            "internalType": "bytes32",
-            "name": "signature",
-            "type": "bytes32"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "studentId",
-            "type": "uint256"
-          }
-        ],
-        "name": "getCredentials",
-        "outputs": [
-          {
-            "internalType": "address",
-            "name": "studentAddress",
-            "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "studentName",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "institution",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "qualification",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "dateIssued",
-            "type": "string"
-          },
-          {
-            "internalType": "bytes32",
-            "name": "signature",
-            "type": "bytes32"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "issuer",
-        "outputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      }
+    [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "studentId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "studentAddress",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "studentName",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "institution",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "qualification",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "dateIssued",
+				"type": "string"
+			}
+		],
+		"name": "CredentialsIssued",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "studentId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "studentAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "studentName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "institution",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "qualification",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "dateIssued",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "signature",
+				"type": "bytes32"
+			}
+		],
+		"name": "issueCredential",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "credentials",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "issuer",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "studentAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "studentName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "institution",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "qualification",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "dateIssued",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "signature",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "studentId",
+				"type": "uint256"
+			}
+		],
+		"name": "getCredentials",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "studentAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "studentName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "institution",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "qualification",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "dateIssued",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "signature",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "issuer",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
     ];
 
     const credentialVerificationABI = [
-      {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "employer",
-            "type": "address"
-          }
-        ],
-        "name": "addEmployer",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "studentId",
-            "type": "uint256"
-          },
-          {
-            "internalType": "address",
-            "name": "employer",
-            "type": "address"
-          }
-        ],
-        "name": "denyPermission",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "studentId",
-            "type": "uint256"
-          },
-          {
-            "internalType": "address",
-            "name": "employer",
-            "type": "address"
-          }
-        ],
-        "name": "grantPermission",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "_distributeCredentialsContract",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "nonpayable",
-        "type": "constructor"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "studentId",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "internalType": "address",
-            "name": "employer",
-            "type": "address"
-          }
-        ],
-        "name": "PermissionDenied",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "studentId",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "internalType": "address",
-            "name": "employer",
-            "type": "address"
-          }
-        ],
-        "name": "PermissionGranted",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "studentId",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "internalType": "address",
-            "name": "employer",
-            "type": "address"
-          }
-        ],
-        "name": "PermissionRequested",
-        "type": "event"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "studentId",
-            "type": "uint256"
-          }
-        ],
-        "name": "receiveCredentials",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "studentId",
-            "type": "uint256"
-          }
-        ],
-        "name": "requestPermission",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "internalType": "address",
-            "name": "employer",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "internalType": "bool",
-            "name": "isVerified",
-            "type": "bool"
-          },
-          {
-            "indexed": false,
-            "internalType": "string",
-            "name": "message",
-            "type": "string"
-          }
-        ],
-        "name": "VerificationResult",
-        "type": "event"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "studentId",
-            "type": "uint256"
-          }
-        ],
-        "name": "credentialsExist",
-        "outputs": [
-          {
-            "internalType": "bool",
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [],
-        "name": "distributeCredentialsContract",
-        "outputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "name": "isEmployer",
-        "outputs": [
-          {
-            "internalType": "bool",
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          },
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "name": "permissions",
-        "outputs": [
-          {
-            "internalType": "bool",
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "studentId",
-            "type": "uint256"
-          }
-        ],
-        "name": "readCredential",
-        "outputs": [
-          {
-            "internalType": "string",
-            "name": "",
-            "type": "string"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "name": "studentAddresses",
-        "outputs": [
-          {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "internalType": "uint256",
-            "name": "studentId",
-            "type": "uint256"
-          },
-          {
-            "internalType": "bytes32",
-            "name": "credentialHash",
-            "type": "bytes32"
-          }
-        ],
-        "name": "verifyCredentials",
-        "outputs": [
-          {
-            "internalType": "bool",
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      }
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "employer",
+				"type": "address"
+			}
+		],
+		"name": "addEmployer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "studentId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "employer",
+				"type": "address"
+			}
+		],
+		"name": "denyPermission",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "studentId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "employer",
+				"type": "address"
+			}
+		],
+		"name": "grantPermission",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_distributeCredentialsContract",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "studentId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "employer",
+				"type": "address"
+			}
+		],
+		"name": "PermissionDenied",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "studentId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "employer",
+				"type": "address"
+			}
+		],
+		"name": "PermissionGranted",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "studentId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "employer",
+				"type": "address"
+			}
+		],
+		"name": "PermissionRequested",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "studentId",
+				"type": "uint256"
+			}
+		],
+		"name": "receiveCredentials",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "studentId",
+				"type": "uint256"
+			}
+		],
+		"name": "requestPermission",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "employer",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "isVerified",
+				"type": "bool"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "message",
+				"type": "string"
+			}
+		],
+		"name": "VerificationResult",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "studentId",
+				"type": "uint256"
+			}
+		],
+		"name": "credentialsExist",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "distributeCredentialsContract",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "isEmployer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "permissions",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "studentId",
+				"type": "uint256"
+			}
+		],
+		"name": "readCredential",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "studentAddresses",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "studentId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "credentialHash",
+				"type": "bytes32"
+			}
+		],
+		"name": "verifyCredentials",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
     ];
 
     let web3;
     let distributeCredentialsContract;
     let credentialVerificationContract;
     let userAddress;
-
-    async function checkMetaMaskConnection() {
-      if (typeof window.ethereum !== 'undefined') {
-        const accounts = await ethereum.request({ method: 'eth_accounts' });
-        if (accounts.length > 0) {
-          document.getElementById('welcome').classList.add('hidden');
-          document.getElementById('roleSelection').classList.remove('hidden');
-        }
-      }
-    }
 
     async function connectMetaMask() {
       try {
@@ -642,36 +634,29 @@
       }
     }
 
-    async function requestPermission() {
-      const studentId = document.getElementById('requestStudentId').value;
-      const messageElement = document.getElementById('requestPermissionMessage');
+    async function checkEmployer() {
+      const employerAddress = document.getElementById('checkEmployerAddress').value;
+      const messageElement = document.getElementById('checkEmployerMessage');
       try {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
         const contract = new ethers.Contract(
           credentialVerificationAddress,
           credentialVerificationABI,
-          signer
+          provider
         );
-        messageElement.textContent = 'Requesting permission, waiting for confirmation...';
-        const tx = await contract.requestPermission(studentId);
-        
-        // Wait for the transaction to be mined
-        tx.wait().then((receipt) => {
-          if (receipt.status === 1) {
-            messageElement.textContent = 'Permission requested successfully.';
-            document.getElementById('requestStudentId').value = ''; // Clear input field
-          } else {
-            messageElement.textContent = 'Transaction failed.';
-          }
-        });
+        const isRegistered = await contract.isEmployer(employerAddress);
+        messageElement.textContent = isRegistered ? 'Employer is registered.' : 'Employer is not registered.';
       } catch (error) {
-        console.error(error);
-        messageElement.textContent = 'Failed to request permission. Error: ' + error.message;
+        console.error('Error checking employer:', error);
+        messageElement.textContent = 'Failed to check employer. Error: ' + error.message;
       }
     }
 
-    window.onload = checkMetaMaskConnection;
+    window.onload = async () => {
+      if (typeof window.ethereum !== 'undefined') {
+        await connectMetaMask();
+      }
+    };
   </script>
 </head>
 <body>
@@ -698,52 +683,10 @@
         <p id="employerMessage" class="status-message"></p>
       </div>
       <div>
-        <h3>Request Permission</h3>
-        <input type="text" id="requestStudentId" placeholder="Student ID">
-        <button class="button" onclick="requestPermission()">Request Permission</button>
-        <p id="requestPermissionMessage" class="status-message"></p>
-      </div>
-    </div>
-
-    <div id="institutionDashboard" class="hidden">
-      <h1>Institution Dashboard</h1>
-      <button class="button" onclick="goHome()">Home</button>
-      <div>
-        <h3>Issue Credential</h3>
-        <input type="text" id="studentId" placeholder="Student ID">
-        <input type="text" id="studentAddress" placeholder="Student Address">
-        <input type="text" id="studentName" placeholder="Student Name">
-        <input type="text" id="institution" placeholder="Institution">
-        <input type="text" id="qualification" placeholder="Qualification">
-        <input type="text" id="dateIssued" placeholder="Date Issued">
-        <input type="text" id="signature" placeholder="Signature">
-        <button class="button" onclick="issueCredential()">Issue Credential</button>
-        <p id="issueCredentialMessage" class="status-message"></p>
-      </div>
-    </div>
-
-    <div id="studentDashboard" class="hidden">
-      <h1>Student Dashboard</h1>
-      <button class="button" onclick="goHome()">Home</button>
-      <div>
-        <h3>Grant Permission</h3>
-        <input type="text" id="grantStudentId" placeholder="Student ID">
-        <input type="text" id="grantEmployerAddress" placeholder="Employer Address">
-        <button class="button" onclick="grantPermission()">Grant Permission</button>
-        <p id="grantPermissionMessage" class="status-message"></p>
-      </div>
-      <div>
-        <h3>Deny Permission</h3>
-        <input type="text" id="denyStudentId" placeholder="Student ID">
-        <input type="text" id="denyEmployerAddress" placeholder="Employer Address">
-        <button class="button" onclick="denyPermission()">Deny Permission</button>
-        <p id="denyPermissionMessage" class="status-message"></p>
-      </div>
-      <div>
-        <h3>View Credential</h3>
-        <input type="text" id="viewStudentId" placeholder="Student ID">
-        <button class="button" onclick="viewCredential()">View Credential</button>
-        <p id="viewCredentialMessage" class="status-message"></p>
+        <h3>Check Employer Address</h3>
+        <input type="text" id="checkEmployerAddress" placeholder="Employer Address">
+        <button class="button" onclick="checkEmployer()">Check Employer</button>
+        <p id="checkEmployerMessage" class="status-message"></p>
       </div>
     </div>
   </div>
